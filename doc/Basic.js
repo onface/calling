@@ -28,6 +28,7 @@ class Basic extends Component {
             },
             subscribe: function (data, info) {
                 self.setState(data)
+                console.log(info.function + ':' + info.name)
             }
         })
     }
@@ -42,8 +43,59 @@ class Basic extends Component {
                         self.call.set('one', Math.random())
                     }}
                 >set</button>
-                <hr />
-                <button onClick={() => self.call.change('list[{name:"nimo"}]', {random: Math.random()}, {all: true})} >change</button>
+                {' '}
+                <button
+                    onClick={() => {
+                        self.call.set(
+                            'list[{name:"nimo"}]',
+                            {
+                                random: Math.random()
+                            }
+                        )
+                    }}
+                >{`list[{name:"nimo"}]`}</button>
+                {' '}
+                <button
+                    onClick={() => {
+                        self.call.delete(
+                            'list[{name:"nico"}]'
+                        )
+                    }}
+                >{`delete list[{name:"nico"}]`}</button>
+                {' '}
+                <button
+                    onClick={() => {
+                        self.call.push(
+                            'list',
+                            {
+                                new: Math.random()
+                            }
+                        )
+                    }}
+                >push</button>
+                {' '}
+                <button
+                    onClick={() => {
+                        self.call.unshift(
+                            'list',
+                            {
+                                new: Math.random()
+                            }
+                        )
+                    }}
+                >unshift</button>
+                {' '}
+                <button
+                    onClick={() => {
+                        self.call.replace(
+                            'list[{name:"nimo"}]',
+                            {
+                                replace: Math.random()
+                            }
+                        )
+                    }}
+                >replace</button>
+                {' '}
                 <hr />
                 <code>
                 {`query('list[{name:"nimo"}].age')`} // {self.call.query('list[{name:"nimo"}].age')}

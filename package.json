@@ -1,7 +1,7 @@
 {
     "name": "calling",
     "main": "lib/index.js",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Faster modification of data.",
     "keywords": "",
     "scripts": {
@@ -19,7 +19,7 @@
     "$repository": "calling",
     "dependencies": {
         "json-format": "^1.0.1",
-        "json-modif": "^0.1.0",
+        "json-modif": "^0.1.4",
         "safe-extend": "^3.0.4"
     },
     "devDependencies": {
