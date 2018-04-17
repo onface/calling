@@ -23,7 +23,7 @@ class Basic extends Component {
             ]
         }
         self.call = new Calling({
-            getData: function () {
+            getValue: function () {
                 return self.state
             },
             subscribe: function (data, info) {
