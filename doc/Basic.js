@@ -22,14 +22,10 @@ class Basic extends Component {
                 }
             ]
         }
+
         self.call = new Calling({
-            getValue: function () {
-                return self.state
-            },
-            subscribe: function (data, info) {
-                self.setState(data)
-                console.log(info.function + ':' + info.name)
-            }
+            getValue: () => self.state,
+            onChange: (data, done) => self.setState(data, done)
         })
     }
     render() {
