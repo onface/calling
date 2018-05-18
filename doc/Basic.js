@@ -1,48 +1,48 @@
 var Calling = require('calling')
 var jsonformat = require('json-format')
 import React , { Component } from "react"
+import apiGroup from "../m/api/group"
 class Basic extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props)
-        const self = this
-        self.state = {
-            one: 'abc',
-            list: [
-                {
-                    name: 'nimo',
-                    age: 25
-                },
-                {
-                    name: 'nico',
-                    age: '18'
-                },
-                {
-                    name: 'nimo',
-                    gender: 'male'
-                }
-            ]
-        }
-
-        self.call = new Calling({
-            getValue: () => self.state,
-            onChange: (data, done) => self.setState(data, done)
-        })
+        self.ca = props.ca
     }
     render() {
         const self = this
         return (
             <div>
-                <pre>{jsonformat(self.state)}</pre>
+                <button
+                    onClick={function (){
+                        self.ca.set('name', 'nimo' + Math.random())
+                        self.props.ca.set('nickname', 'cute ' + self.props.ca.query('name'))
+                    }}
+                >
+                    set props sync
+                </button>
+                <button
+                    onClick={function (){
+                        self.setState({
+                            name: 'nimo' + Math.random()
+                        })
+                        self.setState({
+                            nickname: 'cute ' + self.state.name
+                        })
+                    }}
+                >
+                    set state sync (throw error)
+                </button>
+                <pre>state:{jsonformat(self.state)}</pre>
+                <pre>props:{jsonformat(self.props)}</pre>
                 <hr />
                 <button
                     onClick={() => {
-                        self.call.set('one', Math.random())
+                        self.props.ca.set('one', Math.random())
                     }}
                 >set</button>
                 {' '}
                 <button
                     onClick={() => {
-                        self.call.set(
+                        self.props.ca.set(
                             'list[{name:"nimo"}]',
                             {
                                 random: Math.random()
@@ -53,7 +53,7 @@ class Basic extends Component {
                 {' '}
                 <button
                     onClick={() => {
-                        self.call.delete(
+                        self.props.ca.delete(
                             'list[{name:"nico"}]'
                         )
                     }}
@@ -61,7 +61,7 @@ class Basic extends Component {
                 {' '}
                 <button
                     onClick={() => {
-                        self.call.push(
+                        self.props.ca.push(
                             'list',
                             {
                                 new: Math.random()
@@ -72,7 +72,7 @@ class Basic extends Component {
                 {' '}
                 <button
                     onClick={() => {
-                        self.call.unshift(
+                        self.props.ca.unshift(
                             'list',
                             {
                                 new: Math.random()
@@ -83,7 +83,7 @@ class Basic extends Component {
                 {' '}
                 <button
                     onClick={() => {
-                        self.call.replace(
+                        self.props.ca.replace(
                             'list[{name:"nimo"}]',
                             {
                                 replace: Math.random()
@@ -94,13 +94,13 @@ class Basic extends Component {
                 {' '}
                 <hr />
                 <code>
-                {`query('list[{name:"nimo"}].age')`} // {self.call.query('list[{name:"nimo"}].age')}
+                {`query('list[{name:"nimo"}].age')`} // {self.props.ca.query('list[{name:"nimo"}].age')}
                 </code>
                 <hr />
                 <code>
                 {`queryAll('list[{name:"nimo"}]')`} // {
                     JSON.stringify(
-                        self.call.queryAll('list[{name:"nimo"}]')
+                        self.props.ca.queryAll('list[{name:"nimo"}]')
                     )
                 }
                 </code>
@@ -108,5 +108,23 @@ class Basic extends Component {
         )
     }
 }
+Basic.defaultProps = {
+    one: 'abc',
+    list: [
+        {
+            name: 'nimo',
+            age: 25
+        },
+        {
+            name: 'nico',
+            age: '18'
+        },
+        {
+            name: 'nimo',
+            gender: 'male'
+        }
+    ]
+}
+Basic = Calling.createReact(Basic)
 /*ONFACE-DEL*/Basic = require("react-hot-loader").hot(module)(Basic)
 module.exports = Basic

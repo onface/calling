@@ -1,7 +1,7 @@
 {
     "name": "calling",
     "main": "lib/index.js",
-    "version": "0.3.2",
+    "version": "0.3.3",
     "description": "Faster modification of data.",
     "keywords": "",
     "scripts": {
@@ -18,8 +18,9 @@
     "$username": "onface",
     "$repository": "calling",
     "dependencies": {
+        "delayeach": "^0.2.0",
         "json-format": "^1.0.1",
-        "json-modif": "^0.2.1",
+        "json-modif": "^0.3.0",
         "safe-extend": "^3.0.4"
     },
     "devDependencies": {
