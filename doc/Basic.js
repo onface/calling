@@ -1,11 +1,9 @@
 var Calling = require('calling')
-var jsonformat = require('json-format')
 import React , { Component } from "react"
-import apiGroup from "../m/api/group"
 class Basic extends Component {
     constructor(props) {
         super(props)
-        self.ca = props.ca
+        this.ca = props.ca
     }
     render() {
         const self = this
@@ -13,7 +11,7 @@ class Basic extends Component {
             <div>
                 <button
                     onClick={function (){
-                        self.ca.set('name', 'nimo' + Math.random())
+                        self.props.ca.set('name', 'nimo' + Math.random())
                         self.props.ca.set('nickname', 'cute ' + self.props.ca.query('name'))
                     }}
                 >
@@ -31,8 +29,8 @@ class Basic extends Component {
                 >
                     set state sync (throw error)
                 </button>
-                <pre>state:{jsonformat(self.state)}</pre>
-                <pre>props:{jsonformat(self.props)}</pre>
+                <pre>state:{JSON.stringify(self.state, null, 4)}</pre>
+                <pre>props:{JSON.stringify(self.props, null, 4)}</pre>
                 <hr />
                 <button
                     onClick={() => {
