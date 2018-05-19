@@ -4,12 +4,25 @@ class Basic extends Component {
     constructor(props) {
         super(props)
     }
+    static actions () {
+        return {
+            'some': function (payload, ca) {
+                console.log(payload)
+                ca.set('some', Math.random())
+            }
+        }
+    }
     render() {
         const self = this
         const ca = self.props.ca
         const store = ca.value()
         return (
             <div>
+                <button
+                    onClick={() => {
+                        ca.action('some', {data:1})
+                    }}
+                >action('some')</button>
                 <button
                     onClick={function (){
                         ca.set('name', 'nimo' + Math.random())
