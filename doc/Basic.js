@@ -3,16 +3,17 @@ import React , { Component } from "react"
 class Basic extends Component {
     constructor(props) {
         super(props)
-        this.ca = props.ca
     }
     render() {
         const self = this
+        const ca = self.props.ca
+        const store = ca.value()
         return (
             <div>
                 <button
                     onClick={function (){
-                        self.props.ca.set('name', 'nimo' + Math.random())
-                        self.props.ca.set('nickname', 'cute ' + self.props.ca.query('name'))
+                        ca.set('name', 'nimo' + Math.random())
+                        ca.set('nickname', 'cute ' + ca.get('name'))
                     }}
                 >
                     set props sync
@@ -30,17 +31,17 @@ class Basic extends Component {
                     set state sync (throw error)
                 </button>
                 <pre>state:{JSON.stringify(self.state, null, 4)}</pre>
-                <pre>props:{JSON.stringify(self.props, null, 4)}</pre>
+                <pre>store:{JSON.stringify(store, null, 4)}</pre>
                 <hr />
                 <button
                     onClick={() => {
-                        self.props.ca.set('one', Math.random())
+                        ca.set('one', Math.random())
                     }}
                 >set</button>
                 {' '}
                 <button
                     onClick={() => {
-                        self.props.ca.set(
+                        ca.set(
                             'list[{name:"nimo"}]',
                             {
                                 random: Math.random()
@@ -51,7 +52,7 @@ class Basic extends Component {
                 {' '}
                 <button
                     onClick={() => {
-                        self.props.ca.delete(
+                        ca.delete(
                             'list[{name:"nico"}]'
                         )
                     }}
@@ -59,7 +60,7 @@ class Basic extends Component {
                 {' '}
                 <button
                     onClick={() => {
-                        self.props.ca.push(
+                        ca.push(
                             'list',
                             {
                                 new: Math.random()
@@ -70,7 +71,7 @@ class Basic extends Component {
                 {' '}
                 <button
                     onClick={() => {
-                        self.props.ca.unshift(
+                        ca.unshift(
                             'list',
                             {
                                 new: Math.random()
@@ -81,7 +82,7 @@ class Basic extends Component {
                 {' '}
                 <button
                     onClick={() => {
-                        self.props.ca.replace(
+                        ca.replace(
                             'list[{name:"nimo"}]',
                             {
                                 replace: Math.random()
@@ -92,13 +93,13 @@ class Basic extends Component {
                 {' '}
                 <hr />
                 <code>
-                {`query('list[{name:"nimo"}].age')`} // {self.props.ca.query('list[{name:"nimo"}].age')}
+                {`get('list[{name:"nimo"}].age')`} // {ca.get('list[{name:"nimo"}].age')}
                 </code>
                 <hr />
                 <code>
-                {`queryAll('list[{name:"nimo"}]')`} // {
+                {`getAll('list[{name:"nimo"}]')`} // {
                     JSON.stringify(
-                        self.props.ca.queryAll('list[{name:"nimo"}]')
+                        ca.getAll('list[{name:"nimo"}]')
                     )
                 }
                 </code>
