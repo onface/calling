@@ -121,21 +121,23 @@ class Basic extends Component {
     }
 }
 Basic.defaultProps = {
-    one: 'abc',
-    list: [
-        {
-            name: 'nimo',
-            age: 25
-        },
-        {
-            name: 'nico',
-            age: '18'
-        },
-        {
-            name: 'nimo',
-            gender: 'male'
-        }
-    ]
+    store: {
+        one: 'abc',
+        list: [
+            {
+                name: 'nimo',
+                age: 25
+            },
+            {
+                name: 'nico',
+                age: '18'
+            },
+            {
+                name: 'nimo',
+                gender: 'male'
+            }
+        ]
+    }
 }
 Basic = Calling.createReact(Basic)
 /*ONFACE-DEL*/Basic = require("react-hot-loader").hot(module)(Basic)
