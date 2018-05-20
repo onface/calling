@@ -1,5 +1,6 @@
 # 文档
 
+<a href="?cacache"> use cacache</a>
 
 ````code
 {
