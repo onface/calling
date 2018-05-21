@@ -1,7 +1,7 @@
 {
     "name": "calling",
     "main": "lib/index.js",
-    "version": "0.3.3",
+    "version": "0.3.4",
     "description": "Faster modification of data.",
     "keywords": "",
     "scripts": {
