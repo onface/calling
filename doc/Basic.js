@@ -4,6 +4,14 @@ class Basic extends Component {
     constructor(props) {
         super(props)
     }
+    // 副作用代码
+    static effects () {
+        return {
+            'back': function () {
+                history.back()
+            }
+        }
+    }
     static actions () {
         return {
             'some': function (ca, payload) {
@@ -23,6 +31,11 @@ class Basic extends Component {
                         ca.action('some', {data:1})
                     }}
                 >action('some')</button>
+                <button
+                    onClick={() => {
+                        ca.effect('back')
+                    }}
+                >effect('back')</button>
                 <button
                     onClick={function (){
                         ca.set('name', 'nimo' + Math.random())
