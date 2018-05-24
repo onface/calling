@@ -6,7 +6,7 @@ class Basic extends Component {
     }
     static actions () {
         return {
-            'some': function (payload, ca) {
+            'some': function (ca, payload) {
                 console.log(payload)
                 ca.set('some', Math.random())
             }
